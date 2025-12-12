@@ -16,7 +16,8 @@
 
 ## Introduction
 
-Ce document définit les standards de code et les bonnes pratiques pour le projet **Pro*C Static Analyzer**, un analyseur statique pour code Pro*C (Oracle Embedded SQL).
+Ce document définit les standards de code et les bonnes pratiques pour le projet 
+**Pro*C Static Analyzer**, un analyseur statique pour code Pro*C (Oracle Embedded SQL).
 
 ### Objectifs
 
