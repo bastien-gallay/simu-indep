@@ -61,7 +61,7 @@ Ce plan d'implémentation suit une approche **Test-Driven Development (TDD)** av
   - Utiliser Decimal pour tous les calculs monétaires
   - *Requirements: 6.1, 6.5, 7.1, 7.2, 7.4, 7.5*
 
-- [ ] 3.1 Modèles fiscaux et paramètres
+- [x] 3.1 Modèles fiscaux et paramètres
   - Créer TaxBracket, TaxRates avec validation des taux
   - Créer SimulationParameters avec validation métier
   - Implémenter get_2024_tax_rates() avec sources officielles

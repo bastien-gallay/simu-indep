@@ -9,12 +9,12 @@ __version__ = "1.0.0"
 __author__ = "Simulateur Team"
 
 # Imports principaux pour faciliter l'utilisation du package
-from .models.results import ComparisonResult, EURLResult, SASUResult
 from .models.simulation import SimulationParameters
+from .models.tax_models import FiscalConfiguration, TaxBracket, TaxRates
 
 __all__ = [
     "SimulationParameters",
-    "SASUResult",
-    "EURLResult",
-    "ComparisonResult",
+    "TaxBracket",
+    "TaxRates",
+    "FiscalConfiguration",
 ]
