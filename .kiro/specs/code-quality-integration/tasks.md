@@ -50,7 +50,7 @@ Ce plan d'implémentation suit une approche **Test-Driven Development (TDD)** av
 - [ ] 3. Création des modèles de données typés (TDD Green)
   - Créer le module models/ avec dataclasses immutables
   - Implémenter TaxRates, SimulationParameters, résultats
-  - Ajouter validation dans __post_init__ des dataclasses
+  - Ajouter validation dans `__post_init__` des dataclasses
   - Utiliser Decimal pour tous les calculs monétaires
   - *Requirements: 6.1, 6.5, 7.1, 7.2, 7.4, 7.5*
 

@@ -725,14 +725,14 @@ docs/
 
 Pour les fonctions critiques comme `calculate_progressive_tax`, nous privilégions la **testabilité** et la **transparence** sur l'encapsulation stricte :
 
-**Avantages de l'approche publique :**
+##### Avantages de l'approche publique
 
 - **Tests directs** : Permet de tester la logique complexe du barème progressif de manière isolée
 - **Réutilisabilité** : La fonction peut être utilisée par d'autres calculateurs (CSG, prélèvements sociaux)
 - **Transparence fiscale** : Les calculs fiscaux bénéficient de la transparence pour la vérification et l'audit
 - **Debugging facilité** : Permet d'inspecter les calculs intermédiaires lors du débogage
 
-**Mitigation des inconvénients :**
+##### Mitigation des inconvénients
 
 - **Documentation claire** : Distinction explicite entre interface principale (`calculate`) et fonctions utilitaires (`calculate_progressive_tax`)
 - **Tests complets** : Les deux niveaux d'abstraction sont testés
@@ -742,7 +742,7 @@ Cette approche suit le principe de **transparence** particulièrement important 
 
 #### Avantages de l'Architecture Refactorisée
 
-**Respect des Principes CUPID :**
+##### Respect des Principes CUPID
 
 1. **Composable** :
    - Simulateurs spécialisés composent des calculateurs purs
@@ -769,7 +769,7 @@ Cette approche suit le principe de **transparence** particulièrement important 
    - Séparation claire entre SASU et EURL
    - Noms explicites révélant l'intention
 
-**Testabilité Améliorée :**
+##### Testabilité Améliorée
 
 - Chaque fonction peut être testée isolément
 - Pas de mocks nécessaires pour les calculs purs
@@ -785,7 +785,7 @@ Cette approche suit le principe de **transparence** particulièrement important 
 3. **Réutilisabilité** : Les méthodes peuvent être utilisées par d'autres composants
 4. **Transparence** : Calculs fiscaux vérifiables étape par étape
 
-**Convention de nommage :**
+##### Convention de nommage
 
 - `simulate()` : Interface principale pour la simulation complète
 - `calculate_*()` : Fonctions de calcul réutilisables et testables
@@ -826,7 +826,7 @@ L'adaptation intégre une quatrième étape du cycle, *Reflect*, qui permet à l
 
 #### Stratégie de Migration TDD
 
-**Phase 1 : Tests de Caractérisation**
+#### Phase 1 : Tests de Caractérisation
 
 ```python
 def test_existing_behavior_characterization():
@@ -845,7 +845,7 @@ def test_existing_behavior_characterization():
     assert original_result.taux_prelevement_global == expected_rate
 ```
 
-**Phase 2 : Tests Unitaires des Calculateurs**
+#### Phase 2 : Tests Unitaires des Calculateurs
 
 ```python
 def test_income_tax_calculator_official_examples():
@@ -882,7 +882,7 @@ def test_progressive_tax_calculation_step_by_step():
     ) == Decimal('957.66')  # (20000-11294) * 0.11
 ```
 
-**Phase 3 : Tests d'Intégration avec Comparaison**
+#### Phase 3 : Tests d'Intégration avec Comparaison
 
 ```python
 def test_sasu_simulator_matches_original():
