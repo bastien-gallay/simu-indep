@@ -26,7 +26,7 @@ Ce plan d'implémentation suit une approche **Test-Driven Development (TDD)** av
   - Tester que tous les outils fonctionnent sur le code existant
   - *Requirements: 5.1, 5.2, 5.3*
 
-- [ ] 1.3 Corriger le problème de pre-commit avec Black
+- [x] 1.3 Corriger le problème de pre-commit avec Black
   - Diagnostiquer l'erreur d'installation de Black dans l'environnement virtuel
   - Nettoyer le cache pre-commit et réinstaller les hooks
   - Vérifier que pre-commit fonctionne correctement avec tous les outils
