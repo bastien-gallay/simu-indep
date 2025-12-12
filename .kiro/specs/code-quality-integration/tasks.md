@@ -33,7 +33,7 @@ Ce plan d'implémentation suit une approche **Test-Driven Development (TDD)** av
   - Documenter les résultats comme référence pour la non-régression
   - *Requirements: 1.3, 2.1, 2.5*
 
-- [ ] 2.1 Tests de caractérisation des calculs fiscaux
+- [x] 2.1 Tests de caractérisation des calculs fiscaux
   - **Property 1: Behavioral Equivalence**
   - **Validates: Requirements 1.3**
   - Tester calcul_is avec différents bénéfices (seuils IS)
