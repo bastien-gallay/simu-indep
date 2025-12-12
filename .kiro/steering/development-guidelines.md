@@ -3,11 +3,13 @@
 ## Principes généraux
 
 ### Simplicité avant tout
+
 - Privilégier la lisibilité à la performance
 - Éviter la sur-ingénierie
 - Code auto-documenté avec noms explicites
 
 ### Fiabilité des calculs
+
 - Vérifier toutes les formules avec sources officielles
 - Tester avec des cas d'usage réels
 - Documenter les hypothèses et limitations
@@ -15,6 +17,7 @@
 ## Standards de code Python
 
 ### Style et formatage
+
 ```python
 # Utiliser des type hints
 def calcul_is(benefice: float) -> float:
@@ -31,12 +34,14 @@ charges_sociales_sasu = remuneration_nette * CHARGES_SASU_TAUX
 ```
 
 ### Structure des fonctions
+
 - Une fonction = une responsabilité
 - Paramètres avec valeurs par défaut quand approprié
 - Docstrings avec Args et Returns
 - Gestion des cas limites (valeurs négatives, nulles)
 
 ### Gestion des erreurs
+
 ```python
 def calcul_ir(revenu: float, parts: float = 1.0) -> float:
     """Calcule l'IR avec validation des entrées."""
@@ -50,17 +55,20 @@ def calcul_ir(revenu: float, parts: float = 1.0) -> float:
 ## Interface Streamlit
 
 ### Organisation des composants
+
 - Sidebar pour tous les paramètres d'entrée
 - Zone principale pour résultats et visualisations
 - Sections clairement délimitées avec headers
 
 ### UX/UI
+
 - Valeurs par défaut réalistes
 - Tooltips explicatifs sur paramètres complexes
 - Formatage monétaire cohérent (espaces comme séparateurs)
 - Métriques visuelles pour résultats clés
 
 ### Performance
+
 - Éviter les recalculs inutiles
 - Mise en cache des résultats si nécessaire
 - Interface réactive même avec gros volumes
@@ -68,18 +76,21 @@ def calcul_ir(revenu: float, parts: float = 1.0) -> float:
 ## Données fiscales
 
 ### Sources officielles
+
 - Service-public.fr
 - URSSAF
 - Impots.gouv.fr
 - Code général des impôts
 
 ### Mise à jour annuelle
+
 1. Vérifier nouveaux barèmes (janvier)
 2. Mettre à jour constantes dans app.py
 3. Tester avec cas de référence : `uv run pytest tests/`
 4. Documenter changements dans CHANGELOG
 
 ### Traçabilité
+
 ```python
 # Barème IR 2024 (revenus 2023)
 # Source: https://www.impots.gouv.fr/particulier/bareme-de-limpot-sur-le-revenu
@@ -93,17 +104,20 @@ TRANCHES_IR = [
 ## Tests et validation
 
 ### Cas de test obligatoires
+
 - Revenus très faibles (proche de 0)
 - Revenus moyens (30-50k€)
 - Revenus élevés (>100k€)
 - Cas limites (pas de dividendes, capital minimal)
 
 ### Validation croisée
+
 - Comparer avec simulateurs officiels
 - Vérifier cohérence SASU vs EURL
 - Tester différentes configurations familiales
 
 ### Tests de régression
+
 - Sauvegarder résultats de référence
 - Vérifier après chaque modification
 - Alerter sur écarts significatifs
@@ -111,16 +125,19 @@ TRANCHES_IR = [
 ## Documentation
 
 ### Code
+
 - Docstrings pour toutes les fonctions publiques
 - Commentaires pour logique complexe
 - Exemples d'usage dans docstrings
 
 ### Utilisateur
+
 - README à jour avec captures d'écran
 - FAQ pour questions fréquentes
 - Avertissements clairs sur limitations
 
 ### Développeur
+
 - Architecture dans CONTRIBUTING.md
 - Processus de mise à jour des taux
 - Guide de déploiement si applicable
