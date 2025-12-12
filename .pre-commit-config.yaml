@@ -3,14 +3,14 @@ repos:
     hooks:
       - id: black
         name: black
-        entry: black
+        entry: .venv/bin/black
         language: system
         types: [python]
         args: [--line-length=100]
       
       - id: ruff
         name: ruff
-        entry: ruff check
+        entry: .venv/bin/ruff
         language: system
         types: [python]
-        args: [--fix, --exit-non-zero-on-fix]
+        args: [check, --fix, --exit-non-zero-on-fix]

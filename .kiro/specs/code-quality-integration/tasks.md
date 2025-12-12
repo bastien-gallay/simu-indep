@@ -47,7 +47,7 @@ Ce plan d'implémentation suit une approche **Test-Driven Development (TDD)** av
   - Tester calcul_ir avec différents revenus et parts fiscales
   - Capturer les résultats exacts pour validation future
 
-- [ ] 2.2 Tests de caractérisation des simulations complètes
+- [x] 2.2 Tests de caractérisation des simulations complètes
   - **Property 1: Behavioral Equivalence**
   - **Validates: Requirements 1.3**
   - Tester simuler_sasu avec paramètres variés
