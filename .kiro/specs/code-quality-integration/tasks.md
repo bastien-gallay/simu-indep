@@ -19,7 +19,7 @@ Ce plan d'implémentation suit une approche **Test-Driven Development (TDD)** av
   - Créer les répertoires tests/ avec structure modulaire
   - *Requirements: 2.3, 5.4*
 
-- [-] 1.2 Configurer les outils de qualité
+- [x] 1.2 Configurer les outils de qualité
   - Configurer Black avec line-length=100 selon CODING_STANDARDS.md
   - Configurer Ruff pour linting et import sorting
   - Configurer mypy pour vérification de types stricte
