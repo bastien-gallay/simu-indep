@@ -8,7 +8,6 @@ lors de la refactorisation. Ils implémentent la Property 1: Behavioral Equivale
 **Validates: Requirements 1.3**
 """
 
-
 import pytest
 
 # Import des fonctions existantes à tester
@@ -31,27 +30,31 @@ class TestCharacterizationCalculIS:
     def test_calcul_is_below_threshold(self):
         """Test avec bénéfice sous le seuil de 42 500€ (taux réduit 15%)."""
         test_cases = [
-            (10000, 1500),    # 10k€ * 15% = 1500€
-            (25000, 3750),    # 25k€ * 15% = 3750€
-            (42500, 6375),    # 42.5k€ * 15% = 6375€ (exactement au seuil)
+            (10000, 1500),  # 10k€ * 15% = 1500€
+            (25000, 3750),  # 25k€ * 15% = 3750€
+            (42500, 6375),  # 42.5k€ * 15% = 6375€ (exactement au seuil)
         ]
 
         for benefice, expected_is in test_cases:
             result = calcul_is(benefice)
-            assert result == expected_is, f"IS pour {benefice}€ devrait être {expected_is}€, obtenu {result}€"
+            assert (
+                result == expected_is
+            ), f"IS pour {benefice}€ devrait être {expected_is}€, obtenu {result}€"
 
     def test_calcul_is_above_threshold(self):
         """Test avec bénéfice au-dessus du seuil (taux normal 25%)."""
         test_cases = [
             # Calcul: 42500 * 0.15 + (benefice - 42500) * 0.25
-            (50000, 8250.0),    # 6375 + 1875 = 8250€
+            (50000, 8250.0),  # 6375 + 1875 = 8250€
             (100000, 20750.0),  # 6375 + 14375 = 20750€
             (200000, 45750.0),  # Valeur réelle capturée: 6375 + 39375 = 45750€
         ]
 
         for benefice, expected_is in test_cases:
             result = calcul_is(benefice)
-            assert result == expected_is, f"IS pour {benefice}€ devrait être {expected_is}€, obtenu {result}€"
+            assert (
+                result == expected_is
+            ), f"IS pour {benefice}€ devrait être {expected_is}€, obtenu {result}€"
 
     def test_calcul_is_exact_threshold_boundary(self):
         """Test précis à la frontière du seuil IS."""
@@ -81,36 +84,42 @@ class TestCharacterizationCalculIR:
     def test_calcul_ir_first_bracket(self):
         """Test dans la première tranche (0% jusqu'à 11 294€)."""
         test_cases = [
-            (5000, 1.0, 0),      # Sous le seuil
-            (11294, 1.0, 0),     # Exactement au seuil
+            (5000, 1.0, 0),  # Sous le seuil
+            (11294, 1.0, 0),  # Exactement au seuil
         ]
 
         for revenu, parts, expected_ir in test_cases:
             result = calcul_ir(revenu, parts)
-            assert result == expected_ir, f"IR pour {revenu}€ avec {parts} parts devrait être {expected_ir}€"
+            assert (
+                result == expected_ir
+            ), f"IR pour {revenu}€ avec {parts} parts devrait être {expected_ir}€"
 
     def test_calcul_ir_second_bracket(self):
         """Test dans la deuxième tranche (11% de 11 294€ à 28 797€)."""
         test_cases = [
-            (20000, 1.0, 957.66),    # (20000 - 11294) * 0.11 = 957.66€
-            (28797, 1.0, 1925.33),   # (28797 - 11294) * 0.11 = 1925.33€
+            (20000, 1.0, 957.66),  # (20000 - 11294) * 0.11 = 957.66€
+            (28797, 1.0, 1925.33),  # (28797 - 11294) * 0.11 = 1925.33€
         ]
 
         for revenu, parts, expected_ir in test_cases:
             result = calcul_ir(revenu, parts)
-            assert abs(result - expected_ir) < 0.01, f"IR pour {revenu}€ devrait être ~{expected_ir}€, obtenu {result}€"
+            assert (
+                abs(result - expected_ir) < 0.01
+            ), f"IR pour {revenu}€ devrait être ~{expected_ir}€, obtenu {result}€"
 
     def test_calcul_ir_third_bracket(self):
         """Test dans la troisième tranche (30% de 28 797€ à 82 341€)."""
         # Calcul: 1925.33 (tranche 2) + (revenu - 28797) * 0.30
         test_cases = [
-            (50000, 1.0, 8286.23),   # Valeur réelle capturée
+            (50000, 1.0, 8286.23),  # Valeur réelle capturée
             (82341, 1.0, 17988.53),  # Valeur réelle capturée
         ]
 
         for revenu, parts, expected_ir in test_cases:
             result = calcul_ir(revenu, parts)
-            assert abs(result - expected_ir) < 0.01, f"IR pour {revenu}€ devrait être ~{expected_ir}€, obtenu {result}€"
+            assert (
+                abs(result - expected_ir) < 0.01
+            ), f"IR pour {revenu}€ devrait être ~{expected_ir}€, obtenu {result}€"
 
     def test_calcul_ir_with_quotient_familial(self):
         """Test du quotient familial avec différents nombres de parts."""
@@ -118,14 +127,16 @@ class TestCharacterizationCalculIR:
         base_income = 50000
 
         test_cases = [
-            (1.0, 8286.23),    # 1 part - valeur réelle capturée
-            (2.0, 3015.32),    # 2 parts - valeur réelle capturée
-            (2.5, 2394.15),    # 2.5 parts - valeur réelle capturée
+            (1.0, 8286.23),  # 1 part - valeur réelle capturée
+            (2.0, 3015.32),  # 2 parts - valeur réelle capturée
+            (2.5, 2394.15),  # 2.5 parts - valeur réelle capturée
         ]
 
         for parts, expected_ir in test_cases:
             result = calcul_ir(base_income, parts)
-            assert abs(result - expected_ir) < 0.01, f"IR pour {base_income}€ avec {parts} parts devrait être ~{expected_ir}€"
+            assert (
+                abs(result - expected_ir) < 0.01
+            ), f"IR pour {base_income}€ avec {parts} parts devrait être ~{expected_ir}€"
 
     def test_calcul_ir_high_income_brackets(self):
         """Test avec revenus élevés (tranches 41% et 45%)."""
@@ -138,7 +149,9 @@ class TestCharacterizationCalculIR:
 
         for revenu, parts, expected_ir in test_cases:
             result = calcul_ir(revenu, parts)
-            assert abs(result - expected_ir) < 0.01, f"IR pour {revenu}€ devrait être ~{expected_ir}€, obtenu {result}€"
+            assert (
+                abs(result - expected_ir) < 0.01
+            ), f"IR pour {revenu}€ devrait être ~{expected_ir}€, obtenu {result}€"
 
 
 class TestCharacterizationSimulationsSASU:
@@ -152,7 +165,7 @@ class TestCharacterizationSimulationsSASU:
             remuneration_nette_cible=48000,
             distribuer_dividendes=True,
             parts_fiscales=1.0,
-            option_bareme_ir=False
+            option_bareme_ir=False,
         )
 
         # Vérifications de cohérence
@@ -162,7 +175,9 @@ class TestCharacterizationSimulationsSASU:
         assert result.benefice_avant_remuneration == 90000
 
         # Vérifications des calculs (valeurs de référence à capturer)
-        assert abs(result.remuneration_nette - 48000) < 1, "Rémunération nette devrait être proche de 48000€"
+        assert (
+            abs(result.remuneration_nette - 48000) < 1
+        ), "Rémunération nette devrait être proche de 48000€"
         assert result.charges_sociales > 0, "Charges sociales SASU doivent être positives"
         assert result.is_societe >= 0, "IS doit être positif ou nul"
         assert result.net_disponible > 0, "Net disponible doit être positif"
@@ -175,7 +190,7 @@ class TestCharacterizationSimulationsSASU:
             remuneration_nette_cible=36000,
             distribuer_dividendes=False,
             parts_fiscales=1.0,
-            option_bareme_ir=False
+            option_bareme_ir=False,
         )
 
         assert result.dividendes_bruts == 0
@@ -191,7 +206,7 @@ class TestCharacterizationSimulationsSASU:
             remuneration_nette_cible=50000,
             distribuer_dividendes=True,
             parts_fiscales=2.0,
-            option_bareme_ir=True
+            option_bareme_ir=True,
         )
 
         assert result.statut == "SASU"
@@ -206,7 +221,7 @@ class TestCharacterizationSimulationsSASU:
             remuneration_nette_cible=50000,  # Très élevée par rapport au CA
             distribuer_dividendes=True,
             parts_fiscales=1.0,
-            option_bareme_ir=False
+            option_bareme_ir=False,
         )
 
         # La rémunération devrait être limitée par le bénéfice disponible
@@ -226,7 +241,7 @@ class TestCharacterizationSimulationsEURL:
             distribuer_dividendes=True,
             parts_fiscales=1.0,
             capital_social=1000,
-            option_bareme_ir=False
+            option_bareme_ir=False,
         )
 
         # Vérifications de cohérence
@@ -236,9 +251,13 @@ class TestCharacterizationSimulationsEURL:
         assert result.benefice_avant_remuneration == 90000
 
         # Vérifications spécifiques EURL
-        assert abs(result.remuneration_nette - 48000) < 1, "Rémunération nette devrait être proche de 48000€"
+        assert (
+            abs(result.remuneration_nette - 48000) < 1
+        ), "Rémunération nette devrait être proche de 48000€"
         assert result.charges_sociales > 0, "Charges TNS doivent être positives"
-        assert result.charges_dividendes >= 0, "Charges dividendes EURL peuvent être nulles ou positives"
+        assert (
+            result.charges_dividendes >= 0
+        ), "Charges dividendes EURL peuvent être nulles ou positives"
 
     def test_simuler_eurl_dividend_charges_threshold(self):
         """Test EURL avec seuil 10% capital pour charges dividendes."""
@@ -250,7 +269,7 @@ class TestCharacterizationSimulationsEURL:
             distribuer_dividendes=True,
             parts_fiscales=1.0,
             capital_social=10000,  # Seuil à 1000€
-            option_bareme_ir=False
+            option_bareme_ir=False,
         )
 
         assert result.statut == "EURL"
@@ -267,12 +286,14 @@ class TestCharacterizationSimulationsEURL:
             distribuer_dividendes=True,
             parts_fiscales=1.0,
             capital_social=100,  # Capital très faible, seuil à 10€
-            option_bareme_ir=False
+            option_bareme_ir=False,
         )
 
         # Avec capital faible, presque tous les dividendes sont soumis aux charges
         if result.dividendes_bruts > 10:
-            assert result.charges_dividendes > 0, "Charges dividendes importantes avec capital faible"
+            assert (
+                result.charges_dividendes > 0
+            ), "Charges dividendes importantes avec capital faible"
 
     def test_simuler_eurl_vs_sasu_same_params(self):
         """Test comparatif EURL vs SASU avec mêmes paramètres."""
@@ -282,7 +303,7 @@ class TestCharacterizationSimulationsEURL:
             "remuneration_nette_cible": 42000,
             "distribuer_dividendes": True,
             "parts_fiscales": 1.5,
-            "option_bareme_ir": False
+            "option_bareme_ir": False,
         }
 
         result_sasu = simuler_sasu(**params)
@@ -329,7 +350,7 @@ class TestCharacterizationEdgeCases:
             remuneration_nette_cible=60000,
             distribuer_dividendes=True,
             parts_fiscales=4.0,  # Famille nombreuse
-            option_bareme_ir=False
+            option_bareme_ir=False,
         )
 
         # Avec 4 parts, l'IR devrait être réduit
@@ -377,7 +398,9 @@ def test_reference_calculations_stability():
         if expected_ir == 0:
             assert result == expected_ir
         else:
-            assert abs(result - expected_ir) < 0.01, f"calcul_ir({revenu}, {parts}) = {result}, attendu {expected_ir}"
+            assert (
+                abs(result - expected_ir) < 0.01
+            ), f"calcul_ir({revenu}, {parts}) = {result}, attendu {expected_ir}"
 
 
 if __name__ == "__main__":

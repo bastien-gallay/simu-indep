@@ -6,7 +6,7 @@ Ce plan d'implémentation suit une approche **Test-Driven Development (TDD)** av
 
 ## Tâches d'implémentation
 
-- [-] 1. Configuration de l'environnement de développement et outils qualité
+- [x] 1. Configuration de l'environnement de développement et outils qualité
   - Configurer les outils de qualité de code (Black, Ruff, mypy)
   - Mettre à jour pyproject.toml avec les dépendances de test
   - Configurer pre-commit hooks pour automatiser les vérifications
@@ -25,6 +25,13 @@ Ce plan d'implémentation suit une approche **Test-Driven Development (TDD)** av
   - Configurer mypy pour vérification de types stricte
   - Tester que tous les outils fonctionnent sur le code existant
   - *Requirements: 5.1, 5.2, 5.3*
+
+- [ ] 1.3 Corriger le problème de pre-commit avec Black
+  - Diagnostiquer l'erreur d'installation de Black dans l'environnement virtuel
+  - Nettoyer le cache pre-commit et réinstaller les hooks
+  - Vérifier que pre-commit fonctionne correctement avec tous les outils
+  - Tester un commit pour valider la configuration
+  - *Requirements: 5.1, 5.5*
 
 - [ ] 2. Phase TDD Red : Tests de caractérisation du comportement existant
   - Créer des tests qui capturent le comportement actuel du code monolithique

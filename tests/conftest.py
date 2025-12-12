@@ -1,12 +1,13 @@
 """Configuration et fixtures pytest pour les tests du simulateur de rémunération."""
 
-import pytest
 from decimal import Decimal
-from typing import Dict, Any
+from typing import Any
+
+import pytest
 
 
 @pytest.fixture
-def sample_simulation_params() -> Dict[str, Any]:
+def sample_simulation_params() -> dict[str, Any]:
     """Paramètres de simulation valides pour les tests."""
     return {
         "annual_revenue": Decimal("100000"),
@@ -20,7 +21,7 @@ def sample_simulation_params() -> Dict[str, Any]:
 
 
 @pytest.fixture
-def sample_tax_rates_2024() -> Dict[str, Any]:
+def sample_tax_rates_2024() -> dict[str, Any]:
     """Taux fiscaux 2024 pour les tests."""
     return {
         "year": 2024,
@@ -42,7 +43,7 @@ def sample_tax_rates_2024() -> Dict[str, Any]:
 
 
 @pytest.fixture
-def low_revenue_params() -> Dict[str, Any]:
+def low_revenue_params() -> dict[str, Any]:
     """Paramètres pour revenus faibles."""
     return {
         "annual_revenue": Decimal("30000"),
@@ -56,7 +57,7 @@ def low_revenue_params() -> Dict[str, Any]:
 
 
 @pytest.fixture
-def high_revenue_params() -> Dict[str, Any]:
+def high_revenue_params() -> dict[str, Any]:
     """Paramètres pour revenus élevés."""
     return {
         "annual_revenue": Decimal("200000"),
@@ -70,7 +71,7 @@ def high_revenue_params() -> Dict[str, Any]:
 
 
 @pytest.fixture
-def edge_case_params() -> Dict[str, Any]:
+def edge_case_params() -> dict[str, Any]:
     """Paramètres pour cas limites."""
     return {
         "annual_revenue": Decimal("0"),
