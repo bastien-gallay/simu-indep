@@ -569,8 +569,8 @@ Le projet utilisera une approche de test duale combinant tests unitaires et test
 
 ### Property-Based Testing
 
-**Framework choisi** : Hypothesis (Python)
-**Configuration** : Minimum 100 itérations par test de propriété
+- **Framework choisi** : Hypothesis (Python)
+- **Configuration** : Minimum 100 itérations par test de propriété
 
 Chaque test de propriété sera tagué avec un commentaire référençant explicitement la propriété du document de design :
 
@@ -587,8 +587,8 @@ def test_behavioral_equivalence_property(revenue, expenses):
 
 ### Unit Testing Strategy
 
-**Framework** : pytest avec pytest-cov pour la couverture
-**Couverture cible** : 80% minimum sur la logique métier
+- **Framework** : pytest avec pytest-cov pour la couverture
+- **Couverture cible** : 80% minimum sur la logique métier
 
 Les tests unitaires couvriront :
 
@@ -624,11 +624,11 @@ tests/
 
 Le projet intégrera les outils de qualité de code suivants selon les standards définis :
 
-**Formatage automatique** : Black avec configuration ligne 100 caractères
-**Linting** : Ruff pour vérifications de qualité et tri des imports
-**Vérification de types** : mypy pour validation des annotations
-**Couverture de tests** : pytest-cov avec objectif 80% minimum
-**Pre-commit hooks** : Automatisation des vérifications avant commit
+- **Formatage automatique** : Black avec configuration ligne 100 caractères
+- **Linting** : Ruff pour vérifications de qualité et tri des imports
+- **Vérification de types** : mypy pour validation des annotations
+- **Couverture de tests** : pytest-cov avec objectif 80% minimum
+- **Pre-commit hooks** : Automatisation des vérifications avant commit
 
 Configuration dans `pyproject.toml` :
 
@@ -699,11 +699,11 @@ def test_official_tax_calculation_examples():
 
 La documentation technique sera organisée selon les exigences du Requirement 8 :
 
-**Architecture et organisation** : Documentation claire des modules et dépendances
-**Sources officielles** : Références aux sources gouvernementales pour tous les taux et formules
-**Exemples d'utilisation** : Documentation API avec exemples pour toutes les fonctions publiques
-**Stratégie de tests** : Explication de l'approche duale (unitaires + propriétés)
-**Guide de maintenance** : Processus de mise à jour annuelle des taux fiscaux
+- **Architecture et organisation** : Documentation claire des modules et dépendances
+- **Sources officielles** : Références aux sources gouvernementales pour tous les taux et formules
+- **Exemples d'utilisation** : Documentation API avec exemples pour toutes les fonctions publiques
+- **Stratégie de tests** : Explication de l'approche duale (unitaires + propriétés)
+- **Guide de maintenance** : Processus de mise à jour annuelle des taux fiscaux
 
 Structure de documentation :
 
